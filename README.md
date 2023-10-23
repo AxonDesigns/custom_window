@@ -1,39 +1,77 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Custom Window Flutter Desktop Template
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+The Custom Window Flutter Desktop Template is a versatile starting point for developing desktop applications using Flutter. This template empowers you to create applications with a custom-designed title bar, giving your desktop app a unique and professional look. Whether you're building a productivity tool, a creative application, or any other desktop software, this template provides the foundation you need.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Custom Title Bar**: Design your own title bar to match your application's branding or style.
+- **Resizable Window**: Users can resize the application window as needed.
+- **Maximize and Minimize**: Implement maximize and minimize window functions.
+- **Draggable Window**: Drag the application window to any location on the desktop.
+- **Modular Design**: Easy to edit and adapt to any case of use.
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Follow these steps to get started with the Custom Window Flutter Desktop Template:
 
-## Usage
+1. **Clone the Repository**:
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+   ```bash
+   git clone https://github.com/AxonDesigns/custom_window.git
+   ```
 
-```dart
-const like = 'sample';
-```
+2. **Install Dependencies**:
 
-## Additional information
+   ```bash
+   flutter pub get
+   ```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+3. **Run the Application**:
+
+   ```bash
+   flutter run -d windows
+   ```
+
+## Customizing the Title Bar
+
+The key feature of this template is the customizable title bar. To modify the title bar design, follow these steps:
+
+1. Open the `title_bar.dart` file located in the `lib/src` directory.
+
+2. Customize the title bar using Flutter widgets and styling options.
+
+3. Modify colors, buttons, icons, and layout to match your application's aesthetics.
+
+## Implementing Window Controls
+
+This template provides a basic structure for window controls (minimize, maximize, close). To enhance these controls or add more functionalities, refer to the `title_bar.dart` file and the associated event handlers.
+
+## Building and Distributing
+
+When you're ready to distribute your desktop application, use the following steps:
+
+1. **Generate a Release Build**:
+
+   ```bash
+   flutter build windows
+   ```
+
+2. Find the built executable in the `build/windows/` directory.
+
+3. Distribute your application along with any necessary instructions.
+
+## Contributing
+
+Contributions are welcome! If you have ideas for improvements, new features, or bug fixes, please submit an issue or a pull request to the [custom_window repository](https://github.com/AxonDesigns/custom_window).
+
+## License
+
+This template is licensed under the [MIT License](LICENSE).
+
+## Acknowledgments
+
+This template was inspired by the need for customizable title bars in desktop applications developed with Flutter. Special thanks to the Flutter community for their ongoing support and contributions.
+
+---
+
+Happy coding and building amazing desktop applications with Flutter and the Custom Window template! If you have any questions or need assistance, feel free to reach out to us or the Flutter community.
