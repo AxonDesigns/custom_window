@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:custom_window/src/f_icon_button.dart';
 import 'package:custom_window/src/title_bar_button.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +73,7 @@ class _WindowScaffoldState extends State<WindowScaffold> with WindowListener {
                   Positioned.fill(
                     child: GestureDetector(
                       onPanStart: (details) => windowManager.startDragging(),
+                      onDoubleTap: () => isMaximized ? windowManager.unmaximize() : windowManager.maximize(),
                     ),
                   ),
                   Positioned.fill(
