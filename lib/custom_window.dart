@@ -13,7 +13,7 @@ Future<void> initWindow({
   required String title,
   Size startSize = const Size(800, 600),
   Size minSize = const Size(400, 300),
-  Size maxSize = const Size(400, 300),
+  Size? maxSize,
   Color? backgroundColor,
   bool center = true,
   bool skipTaskbar = false,
