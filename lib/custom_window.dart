@@ -1,7 +1,6 @@
 library custom_window;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:window_manager/window_manager.dart';
 import 'dart:async';
 
@@ -33,9 +32,7 @@ class CustomWindow with WindowListener {
     bool windowButtonVisibility = false,
     bool alwaysOnTop = false,
     bool fullScreen = false,
-    bool acrylicBackground = true,
   }) async {
-    await Window.initialize();
     await windowManager.ensureInitialized();
 
     WindowOptions windowOptions = WindowOptions(
@@ -55,14 +52,6 @@ class CustomWindow with WindowListener {
     await windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.show();
       await windowManager.focus();
-
-      Window.setEffect(
-        effect: acrylicBackground ? WindowEffect.acrylic : WindowEffect.solid,
-        color: Colors.transparent,
-        dark: true,
-      );
-
-      await Window.hideWindowControls();
     });
   }
 

@@ -47,7 +47,7 @@ class _WindowScaffoldState extends State<WindowScaffold> with WindowListener {
   Widget build(BuildContext context) {
     return Builder(
       builder: (context) => Material(
-        color: widget.BackgroundColor ?? Theme.of(context).colorScheme.background.withOpacity(0.8),
+        color: widget.BackgroundColor ?? Theme.of(context).colorScheme.background,
         child: Column(
           children: [
             if (widget.titleBar != null) widget.titleBar!.call(isMaximized, isFocused),
