@@ -74,6 +74,7 @@ class CustomWindow {
   Future<void> unFocus() async => await windowManager.blur();
 
   Future<void> setTitle(String title) async => await windowManager.setTitle(title);
+  Future<String> getTitle() async => await windowManager.getTitle();
 }
 
 final customWindow = CustomWindow.instance;

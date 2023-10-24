@@ -1,7 +1,6 @@
 import 'package:custom_window/custom_window.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:window_manager/window_manager.dart';
 
 class TitleBar extends StatefulWidget {
   final Color? titleBarColor;
@@ -45,7 +44,7 @@ class _TitleBarState extends State<TitleBar> {
   void initState() {
     super.initState();
     setState(() {
-      windowManager.getTitle().then((value) => setState(() => _title = value));
+      customWindow.getTitle().then((value) => setState(() => _title = value));
     });
   }
 
@@ -76,8 +75,14 @@ class _TitleBarState extends State<TitleBar> {
             Positioned.fill(
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onPanStart: (details) => widget.onMoveStarted?.call(),
-                onDoubleTap: widget.onDoubleTap,
+                onPanStart: (details) {
+                  customWindow.startDragging();
+                  widget.onMoveStarted?.call();
+                },
+                onDoubleTap: () {
+                  customWindow.toggleMaximize();
+                  widget.onDoubleTap?.call();
+                },
               ),
             ),
             Positioned.fill(
@@ -121,7 +126,10 @@ class _TitleBarState extends State<TitleBar> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         TitleBarButton(
-                          onPressed: widget.onMinimize,
+                          onPressed: () {
+                            customWindow.minimize();
+                            widget.onMinimize?.call();
+                          },
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
                             "assets/images/minimize_icon.png",
@@ -131,7 +139,10 @@ class _TitleBarState extends State<TitleBar> {
                           ),
                         ),
                         TitleBarButton(
-                          onPressed: widget.onMaximize,
+                          onPressed: () {
+                            customWindow.toggleMaximize();
+                            widget.onMaximize?.call();
+                          },
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
                             "assets/images/${_isMaximized ? "unmaximize_icon" : "maximize_icon"}.png",
@@ -144,7 +155,10 @@ class _TitleBarState extends State<TitleBar> {
                           hoveredColor: Colors.red,
                           activeColor: Colors.red.shade900,
                           maxSize: const Size(double.infinity, 30),
-                          onPressed: widget.onClose,
+                          onPressed: () {
+                            customWindow.close();
+                            widget.onClose?.call();
+                          },
                           childBuilder: (pressed, hovered, enabled) => Image.asset(
                             "assets/images/close_icon.png",
                             isAntiAlias: true,
