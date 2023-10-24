@@ -88,7 +88,7 @@ class _TitleBarState extends State<TitleBar> with WindowListener {
                 children: [
                   const SizedBox(width: 6),
                   FIconButton(
-                    onPressed: widget.navState != null
+                    onPressed: canPop
                         ? () {
                             pop();
                             widget.onPop?.call();
