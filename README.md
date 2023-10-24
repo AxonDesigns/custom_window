@@ -14,10 +14,12 @@ The Custom Window Flutter Desktop Template is a versatile starting point for dev
 
 Follow these steps to get started with the Custom Window Flutter Desktop Template:
 
-1. **Clone the Repository**:
+1. **Add the repository to your `pubspec.yaml`**:
 
-   ```bash
-   git clone https://github.com/AxonDesigns/custom_window.git
+   ```yaml
+   custom_window:
+      git: 
+         url: https://github.com/AxonDesigns/custom_window.git
    ```
 
 2. **Install Dependencies**:
@@ -26,18 +28,19 @@ Follow these steps to get started with the Custom Window Flutter Desktop Templat
    flutter pub get
    ```
 
-3. **Run the Application**:
-
-   ```bash
-   flutter run -d windows
-   ```
-
 ## Customizing the Title Bar
 
 The key feature of this template is the customizable title bar. To modify the title bar design, follow these steps:
 
-1. Open the `title_bar.dart` file located in the `lib/src` directory.
+1. Add the `TitleBar` to the `WindowScaffold` as follows:
 
+   ```dart
+   WindowScaffold(
+      titleBarBuilder: (maximized, focused) => 
+         TitleBar(maximized: maximized, focused: focused),
+      ...
+   );
+   ```
 2. Customize the title bar using Flutter widgets and styling options.
 
 3. Modify colors, buttons, icons, and layout to match your application's aesthetics.
