@@ -9,6 +9,7 @@ export 'src/window_scaffold.dart';
 export 'src/f_icon_button.dart';
 export 'src/title_bar_button.dart';
 export 'src/window_page.dart';
+export 'src/title_bar.dart';
 
 class CustomWindow with WindowListener {
   static final CustomWindow instance = CustomWindow._();
