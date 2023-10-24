@@ -74,8 +74,9 @@ class _TitleBarState extends State<TitleBar> with WindowListener {
         children: [
           Positioned.fill(
             child: GestureDetector(
-              onPanStart: (details) => widget.onMoveStarted,
-              onDoubleTap: () => widget.onDoubleTap,
+              behavior: HitTestBehavior.translucent,
+              onPanStart: (details) => widget.onMoveStarted?.call(),
+              onDoubleTap: widget.onDoubleTap,
             ),
           ),
           Positioned.fill(
