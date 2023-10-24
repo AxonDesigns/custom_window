@@ -9,16 +9,15 @@ export 'src/f_icon_button.dart';
 export 'src/title_bar_button.dart';
 export 'src/window_page.dart';
 export 'src/title_bar.dart';
+export 'src/window_callback_container.dart';
 
-class CustomWindow with WindowListener {
+class CustomWindow {
   static final CustomWindow instance = CustomWindow._();
 
   bool isMaximized = false;
   bool isFocused = true;
 
-  CustomWindow._() {
-    windowManager.addListener(this);
-  }
+  CustomWindow._();
 
   Future<void> initWindow({
     required String title,
@@ -75,111 +74,6 @@ class CustomWindow with WindowListener {
   Future<void> unFocus() async => await windowManager.blur();
 
   Future<void> setTitle(String title) async => await windowManager.setTitle(title);
-
-  /*@override
-  void onWindowClose() {
-    super.onWindowClose();
-    windowManager.removeListener(this);
-    onClose?.call();
-  }
-
-  @override
-  void onWindowBlur() {
-    super.onWindowBlur();
-    isFocused = false;
-    onUnFocus?.call();
-  }
-
-  @override
-  void onWindowMinimize() {
-    super.onWindowMinimize();
-    isFocused = false;
-    onMinimize?.call();
-  }
-
-  @override
-  void onWindowMove() {
-    super.onWindowMove();
-    isFocused = true;
-    isMaximized = false;
-    onMove?.call();
-  }
-
-  @override
-  void onWindowMoved() {
-    super.onWindowMoved();
-    onMoved?.call();
-  }
-
-  @override
-  void onWindowMaximize() {
-    super.onWindowMaximize();
-    isMaximized = true;
-    onMaximize?.call();
-  }
-
-  @override
-  void onWindowFocus() {
-    super.onWindowFocus();
-    isFocused = true;
-    onFocus?.call();
-  }
-
-  @override
-  void onWindowUnmaximize() {
-    super.onWindowUnmaximize();
-    isMaximized = false;
-    onUnMaximize?.call();
-  }
-
-  @override
-  void onWindowResize() {
-    super.onWindowResize();
-    isMaximized = false;
-    onResize?.call();
-  }
-
-  @override
-  void onWindowResized() {
-    super.onWindowResized();
-    onResized?.call();
-  }
-
-  @override
-  void onWindowRestore() {
-    isFocused = true;
-    super.onWindowRestore();
-  }
-
-  @override
-  void onWindowDocked() {
-    super.onWindowDocked();
-    onDocked?.call();
-  }
-
-  @override
-  void onWindowUndocked() {
-    super.onWindowUndocked();
-    onUnDocked?.call();
-  }
-
-  @override
-  void onWindowEnterFullScreen() {
-    super.onWindowEnterFullScreen();
-    onEnterFullScreen?.call();
-  }
-
-  @override
-  void onWindowLeaveFullScreen() {
-    super.onWindowLeaveFullScreen();
-    onLeaveFullScreen?.call();
-  }
-
-  @override
-  void onWindowEvent(String eventName) {
-    super.onWindowEvent(eventName);
-    onEvent?.call(eventName);
-  }*/
 }
 
 final customWindow = CustomWindow.instance;

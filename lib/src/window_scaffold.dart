@@ -1,15 +1,15 @@
+import 'package:custom_window/custom_window.dart';
 import 'package:flutter/material.dart';
-import 'package:window_manager/window_manager.dart';
 
 class WindowScaffold extends StatefulWidget {
-  final Widget Function(bool maximized, bool focused) body;
-  final Widget Function(bool maximized, bool focused)? titleBar;
+  final Widget Function(bool maximized, bool focused) bodyBuilder;
+  final Widget Function(bool maximized, bool focused)? titleBarBuilder;
   final Color? titleBarColor;
   final Color? BackgroundColor;
   const WindowScaffold({
     super.key,
-    required this.body,
-    this.titleBar,
+    required this.bodyBuilder,
+    this.titleBarBuilder,
     this.titleBarColor,
     this.BackgroundColor,
   });
@@ -18,95 +18,30 @@ class WindowScaffold extends StatefulWidget {
   State<StatefulWidget> createState() => _WindowScaffoldState();
 }
 
-class _WindowScaffoldState extends State<WindowScaffold> with WindowListener {
-  bool isMaximized = false;
-  bool isFocused = true;
-  String title = "";
-
-  @override
-  void initState() {
-    super.initState();
-    windowManager.addListener(this);
-    setState(() {
-      windowManager.getTitle().then((value) => setState(() => title = value));
-    });
-  }
-
-  @override
-  void didUpdateWidget(covariant WindowScaffold oldWidget) {
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void dispose() {
-    windowManager.removeListener(this);
-    super.dispose();
-  }
+class _WindowScaffoldState extends State<WindowScaffold> {
+  bool _isMaximized = false;
+  bool _isFocused = true;
 
   @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (context) => Material(
-        color: widget.BackgroundColor ?? Theme.of(context).colorScheme.background,
-        child: Column(
-          children: [
-            if (widget.titleBar != null) widget.titleBar!.call(isMaximized, isFocused),
-            Expanded(child: widget.body(isMaximized, isFocused)),
-          ],
+    return WindowCallbackContainer(
+      onFocus: () => setState(() => _isFocused = true),
+      onUnFocus: () => setState(() => _isFocused = false),
+      onMaximize: () => setState(() => _isMaximized = true),
+      onUnMaximize: () => setState(() => _isMaximized = false),
+      onMinimize: () => setState(() => _isFocused = false),
+      onRestore: () => setState(() => _isFocused = true),
+      child: Builder(
+        builder: (context) => Material(
+          color: widget.BackgroundColor ?? Theme.of(context).colorScheme.background,
+          child: Column(
+            children: [
+              if (widget.titleBarBuilder != null) widget.titleBarBuilder!.call(_isMaximized, _isFocused),
+              Expanded(child: widget.bodyBuilder(_isMaximized, _isFocused)),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  @override
-  void onWindowFocus() {
-    super.onWindowFocus();
-    setState(() {
-      isFocused = true;
-    });
-  }
-
-  @override
-  void onWindowBlur() {
-    super.onWindowBlur();
-    setState(() {
-      isFocused = false;
-    });
-  }
-
-  @override
-  void onWindowMaximize() {
-    super.onWindowMaximize();
-    setState(() {
-      isMaximized = true;
-    });
-  }
-
-  @override
-  void onWindowUnmaximize() {
-    super.onWindowMinimize();
-    setState(() {
-      isMaximized = false;
-    });
-  }
-
-  @override
-  void onWindowUndocked() {
-    super.onWindowUndocked();
-    isMaximized = false;
-  }
-
-  @override
-  void onWindowMinimize() {
-    super.onWindowMinimize();
-    isFocused = false;
-  }
-
-  @override
-  void onWindowRestore() {
-    super.onWindowRestore();
-    setState(() {
-      isFocused = true;
-    });
   }
 }
