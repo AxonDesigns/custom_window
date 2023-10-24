@@ -6,14 +6,12 @@ class WindowScaffold extends StatefulWidget {
   final Widget Function(bool maximized, bool focused)? titleBar;
   final Color? titleBarColor;
   final Color? BackgroundColor;
-  final GlobalKey<NavigatorState> navState;
   const WindowScaffold({
     super.key,
     required this.body,
     this.titleBar,
     this.titleBarColor,
     this.BackgroundColor,
-    required this.navState,
   });
 
   @override
@@ -23,7 +21,6 @@ class WindowScaffold extends StatefulWidget {
 class _WindowScaffoldState extends State<WindowScaffold> with WindowListener {
   bool isMaximized = false;
   bool isFocused = true;
-  bool canPop = false;
   String title = "";
 
   @override
@@ -38,21 +35,12 @@ class _WindowScaffoldState extends State<WindowScaffold> with WindowListener {
   @override
   void didUpdateWidget(covariant WindowScaffold oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      setState(() {
-        canPop = widget.navState.currentState?.canPop() ?? false;
-      });
-    });
   }
 
   @override
   void dispose() {
     windowManager.removeListener(this);
     super.dispose();
-  }
-
-  void pop() {
-    widget.navState.currentState?.pop();
   }
 
   @override
