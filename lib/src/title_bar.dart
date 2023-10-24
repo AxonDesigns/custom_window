@@ -44,7 +44,7 @@ class _TitleBarState extends State<TitleBar> {
   void initState() {
     super.initState();
     setState(() {
-      customWindow.getTitle().then((value) => setState(() => _title = value));
+      customWindow.title.then((value) => setState(() => _title = value));
     });
   }
 
