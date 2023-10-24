@@ -60,7 +60,7 @@ class _WindowCallbackContainerState extends State<WindowCallbackContainer> with 
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return widget.child;
   }
 
   @override
