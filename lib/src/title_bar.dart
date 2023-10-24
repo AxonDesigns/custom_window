@@ -6,6 +6,7 @@ import 'package:window_manager/window_manager.dart';
 
 class TitleBar extends StatefulWidget {
   final Color? titleBarColor;
+  final double height;
   final VoidCallback? onPop;
   final VoidCallback? onClose;
   final VoidCallback? onMinimize;
@@ -17,6 +18,7 @@ class TitleBar extends StatefulWidget {
   const TitleBar({
     super.key,
     this.titleBarColor,
+    this.height = 46,
     this.onPop,
     this.onClose,
     this.onMinimize,
@@ -68,7 +70,7 @@ class _TitleBarState extends State<TitleBar> with WindowListener {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 46,
+      height: widget.height,
       color: widget.titleBarColor ?? Colors.transparent,
       child: Stack(
         children: [
@@ -121,6 +123,7 @@ class _TitleBarState extends State<TitleBar> with WindowListener {
                     children: [
                       TitleBarButton(
                         onPressed: widget.onMinimize,
+                        maxSize: const Size(double.infinity, 30),
                         child: Image.asset(
                           "assets/images/minimize_icon.png",
                           isAntiAlias: true,
@@ -130,6 +133,7 @@ class _TitleBarState extends State<TitleBar> with WindowListener {
                       ),
                       TitleBarButton(
                         onPressed: widget.onMaximize,
+                        maxSize: const Size(double.infinity, 30),
                         child: Image.asset(
                           "assets/images/${isMaximized ? "unmaximize_icon" : "maximize_icon"}.png",
                           isAntiAlias: true,
@@ -140,6 +144,7 @@ class _TitleBarState extends State<TitleBar> with WindowListener {
                       TitleBarButton(
                         hoveredColor: Colors.red,
                         activeColor: Colors.red.shade900,
+                        maxSize: const Size(double.infinity, 30),
                         onPressed: widget.onClose,
                         childBuilder: (pressed, hovered, enabled) => Image.asset(
                           "assets/images/close_icon.png",
