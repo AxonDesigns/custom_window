@@ -28,6 +28,9 @@ class CustomWindow with WindowListener {
 
   static final CustomWindow instance = CustomWindow._();
 
+  bool isMaximized = false;
+  bool isFocused = true;
+
   CustomWindow._({
     this.onClose,
     this.onMaximize,
@@ -103,18 +106,22 @@ class CustomWindow with WindowListener {
   @override
   void onWindowBlur() {
     super.onWindowBlur();
+    isFocused = false;
     onUnFocus?.call();
   }
 
   @override
   void onWindowMinimize() {
     super.onWindowMinimize();
+    isFocused = false;
     onMinimize?.call();
   }
 
   @override
   void onWindowMove() {
     super.onWindowMove();
+    isFocused = true;
+    isMaximized = false;
     onMove?.call();
   }
 
@@ -127,24 +134,28 @@ class CustomWindow with WindowListener {
   @override
   void onWindowMaximize() {
     super.onWindowMaximize();
+    isMaximized = true;
     onMaximize?.call();
   }
 
   @override
   void onWindowFocus() {
     super.onWindowFocus();
+    isFocused = true;
     onFocus?.call();
   }
 
   @override
   void onWindowUnmaximize() {
     super.onWindowUnmaximize();
+    isMaximized = false;
     onUnMaximize?.call();
   }
 
   @override
   void onWindowResize() {
     super.onWindowResize();
+    isMaximized = false;
     onResize?.call();
   }
 
@@ -156,6 +167,7 @@ class CustomWindow with WindowListener {
 
   @override
   void onWindowRestore() {
+    isFocused = true;
     super.onWindowRestore();
   }
 
