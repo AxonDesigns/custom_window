@@ -3,6 +3,7 @@ library custom_window;
 import 'package:flutter/material.dart';
 import 'package:flutter_acrylic/flutter_acrylic.dart';
 import 'package:window_manager/window_manager.dart';
+import 'dart:async';
 
 export 'src/window_scaffold.dart';
 export 'src/f_icon_button.dart';
@@ -10,44 +11,12 @@ export 'src/title_bar_button.dart';
 export 'src/window_page.dart';
 
 class CustomWindow with WindowListener {
-  final VoidCallback? onClose;
-  final VoidCallback? onMaximize;
-  final VoidCallback? onUnMaximize;
-  final VoidCallback? onMinimize;
-  final VoidCallback? onFocus;
-  final VoidCallback? onUnFocus;
-  final VoidCallback? onMove;
-  final VoidCallback? onMoved;
-  final VoidCallback? onResize;
-  final VoidCallback? onResized;
-  final VoidCallback? onDocked;
-  final VoidCallback? onUnDocked;
-  final VoidCallback? onEnterFullScreen;
-  final VoidCallback? onLeaveFullScreen;
-  final Function(String event)? onEvent;
-
   static final CustomWindow instance = CustomWindow._();
 
   bool isMaximized = false;
   bool isFocused = true;
 
-  CustomWindow._({
-    this.onClose,
-    this.onMaximize,
-    this.onUnMaximize,
-    this.onMinimize,
-    this.onFocus,
-    this.onUnFocus,
-    this.onMove,
-    this.onMoved,
-    this.onResize,
-    this.onResized,
-    this.onDocked,
-    this.onUnDocked,
-    this.onEnterFullScreen,
-    this.onLeaveFullScreen,
-    this.onEvent,
-  }) {
+  CustomWindow._() {
     windowManager.addListener(this);
   }
 
@@ -96,7 +65,28 @@ class CustomWindow with WindowListener {
     });
   }
 
-  @override
+  Future<void> close() async => await windowManager.close();
+
+  Future<void> startDragging() async => await windowManager.startDragging();
+
+  Future<void> maximize({bool vertically = false}) async => await windowManager.maximize(vertically: vertically);
+
+  Future<void> unmaximize() async => await windowManager.unmaximize();
+
+  Future<void> toggleMaximize({bool vertically = false}) async =>
+      await windowManager.isMaximized() ? await windowManager.unmaximize() : await windowManager.maximize(vertically: vertically);
+
+  Future<void> minimize() async => await windowManager.minimize();
+
+  Future<void> restore() async => await windowManager.restore();
+
+  Future<void> focus() async => await windowManager.focus();
+
+  Future<void> unFocus() async => await windowManager.blur();
+
+  Future<void> setTitle(String title) async => await windowManager.setTitle(title);
+
+  /*@override
   void onWindowClose() {
     super.onWindowClose();
     windowManager.removeListener(this);
@@ -199,7 +189,7 @@ class CustomWindow with WindowListener {
   void onWindowEvent(String eventName) {
     super.onWindowEvent(eventName);
     onEvent?.call(eventName);
-  }
+  }*/
 }
 
 final customWindow = CustomWindow.instance;
