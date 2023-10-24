@@ -163,4 +163,56 @@ class _TitleBarState extends State<TitleBar> with WindowListener {
       ),
     );
   }
+
+  @override
+  void onWindowFocus() {
+    super.onWindowFocus();
+    setState(() {
+      isFocused = true;
+    });
+  }
+
+  @override
+  void onWindowBlur() {
+    super.onWindowBlur();
+    setState(() {
+      isFocused = false;
+    });
+  }
+
+  @override
+  void onWindowMaximize() {
+    super.onWindowMaximize();
+    setState(() {
+      isMaximized = true;
+    });
+  }
+
+  @override
+  void onWindowUnmaximize() {
+    super.onWindowMinimize();
+    setState(() {
+      isMaximized = false;
+    });
+  }
+
+  @override
+  void onWindowUndocked() {
+    super.onWindowUndocked();
+    isMaximized = false;
+  }
+
+  @override
+  void onWindowMinimize() {
+    super.onWindowMinimize();
+    isFocused = false;
+  }
+
+  @override
+  void onWindowRestore() {
+    super.onWindowRestore();
+    setState(() {
+      isFocused = true;
+    });
+  }
 }
