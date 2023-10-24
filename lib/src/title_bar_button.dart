@@ -4,6 +4,7 @@ class TitleBarButton extends StatefulWidget {
   final Widget? child;
   final VoidCallback? onPressed;
   final Size? minSize;
+  final Size? maxSize;
   final EdgeInsetsGeometry padding;
   final Color? inactiveColor;
   final Color? activeColor;
@@ -17,6 +18,7 @@ class TitleBarButton extends StatefulWidget {
     this.childBuilder,
     this.onPressed,
     this.minSize,
+    this.maxSize,
     this.inactiveColor,
     this.hoveredColor,
     this.activeColor,
@@ -59,6 +61,8 @@ class _TitleBarButtonState extends State<TitleBarButton> {
           constraints: BoxConstraints(
             minWidth: widget.minSize?.width ?? 15,
             minHeight: widget.minSize?.height ?? 15,
+            maxHeight: widget.maxSize?.height ?? double.infinity,
+            maxWidth: widget.maxSize?.width ?? double.infinity,
           ),
           child: Container(
             decoration: BoxDecoration(
