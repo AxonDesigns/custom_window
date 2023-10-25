@@ -16,7 +16,7 @@ class CustomWindow {
 
   CustomWindow._();
 
-  /// Initializes window with various options.
+  /// Initializes window.
   Future<void> initWindow({
     required String title,
     Size startSize = const Size(800, 600),
