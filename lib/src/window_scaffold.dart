@@ -23,6 +23,13 @@ class _WindowScaffoldState extends State<WindowScaffold> {
   bool _isFocused = true;
 
   @override
+  void initState() {
+    customWindow.isMaximized.then((value) => setState(() => _isMaximized = value));
+    customWindow.isFocused.then((value) => setState(() => _isFocused = value));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WindowCallbackContainer(
       onFocus: () => setState(() => _isFocused = true),

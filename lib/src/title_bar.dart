@@ -31,18 +31,16 @@ class _TitleBarState extends State<TitleBar> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      customWindow.title.then((value) => setState(() => _title = value));
-    });
+    customWindow.title.then((value) => setState(() => _title = value));
+    customWindow.isMaximized.then((value) => setState(() => _isMaximized = value));
+    customWindow.isFocused.then((value) => setState(() => _isFocused = value));
   }
 
   @override
   void didUpdateWidget(covariant TitleBar oldWidget) {
     super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      setState(() {
-        _canPop = widget.navState?.currentState?.canPop() ?? false;
-      });
+      setState(() => _canPop = widget.navState?.currentState?.canPop() ?? false);
     });
   }
 

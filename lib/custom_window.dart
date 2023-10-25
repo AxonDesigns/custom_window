@@ -14,9 +14,6 @@ export 'src/window_callback_container.dart';
 class CustomWindow {
   static final CustomWindow instance = CustomWindow._();
 
-  bool isMaximized = false;
-  bool isFocused = true;
-
   CustomWindow._();
 
   Future<void> initWindow({
@@ -90,6 +87,10 @@ class CustomWindow {
   Future<bool> get isDockable async => await windowManager.isDockable();
 
   Future<bool> get isFullScreen async => await windowManager.isFullScreen();
+
+  Future<bool> get isMaximized async => await windowManager.isMaximized();
+
+  Future<bool> get isFocused async => await windowManager.isFocused();
 
   Future<bool> get isMaximizable async => await windowManager.isMaximizable();
 
