@@ -31,6 +31,8 @@ class CustomWindow {
     bool windowButtonVisibility = false,
     bool alwaysOnTop = false,
     bool fullScreen = false,
+    bool focusAtStartup = true,
+    bool hideAtStartup = false,
   }) async {
     await windowManager.ensureInitialized();
 
@@ -49,8 +51,8 @@ class CustomWindow {
     );
 
     await windowManager.waitUntilReadyToShow(windowOptions, () async {
-      await windowManager.show();
-      await windowManager.focus();
+      hideAtStartup ? await windowManager.hide() : await windowManager.show();
+      focusAtStartup ? await windowManager.focus() : await windowManager.blur();
     });
   }
 
@@ -113,6 +115,14 @@ class CustomWindow {
       );
 
   Future<void> setTitle(String title) async => await windowManager.setTitle(title);
+
+  Future<void> setBadgeLabel(String label) async => await windowManager.setBadgeLabel(label);
+
+  Future<void> setVisibleOnAllWorkspaces(bool visible, {required bool visibleOnFullScreen}) async =>
+      await windowManager.setVisibleOnAllWorkspaces(visible, visibleOnFullScreen: visibleOnFullScreen);
+
+  Future<void> setTitleBarVisibility(bool visible, {required bool showWindowButtons}) async =>
+      await windowManager.setTitleBarStyle(visible ? TitleBarStyle.normal : TitleBarStyle.hidden, windowButtonVisibility: showWindowButtons);
 
   Future<void> setAlignment(Alignment alignment, {bool animate = true}) async => await windowManager.setAlignment(alignment, animate: animate);
 

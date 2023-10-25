@@ -5,24 +5,12 @@ import 'package:flutter/material.dart';
 class TitleBar extends StatefulWidget {
   final Color? titleBarColor;
   final double height;
-  final VoidCallback? onPop;
-  final VoidCallback? onClose;
-  final VoidCallback? onMinimize;
-  final VoidCallback? onMaximize;
-  final VoidCallback? onMoveStarted;
-  final VoidCallback? onDoubleTap;
   final GlobalKey<NavigatorState>? navState;
 
   const TitleBar({
     super.key,
     this.titleBarColor,
     this.height = 46,
-    this.onPop,
-    this.onClose,
-    this.onMinimize,
-    this.onMaximize,
-    this.onMoveStarted,
-    this.onDoubleTap,
     this.navState,
   });
 
@@ -75,19 +63,13 @@ class _TitleBarState extends State<TitleBar> {
             Positioned.fill(
               child: GestureDetector(
                 behavior: HitTestBehavior.translucent,
-                onPanStart: (details) {
-                  customWindow.startDragging();
-                  widget.onMoveStarted?.call();
-                },
-                onDoubleTap: () {
-                  customWindow.toggleMaximize();
-                  widget.onDoubleTap?.call();
-                },
+                onPanStart: (details) => customWindow.startDragging(),
+                onDoubleTap: () => customWindow.toggleMaximize(),
               ),
             ),
             Positioned.fill(
               child: AnimatedOpacity(
-                duration: const Duration(milliseconds: 100),
+                duration: const Duration(milliseconds: 75),
                 curve: Curves.easeInOut,
                 opacity: _isFocused ? 1 : 0.5,
                 child: Row(
@@ -95,12 +77,7 @@ class _TitleBarState extends State<TitleBar> {
                   children: [
                     const SizedBox(width: 6),
                     FIconButton(
-                      onPressed: _canPop
-                          ? () {
-                              pop();
-                              widget.onPop?.call();
-                            }
-                          : null,
+                      onPressed: _canPop ? () => pop() : null,
                       minSize: const Size(40, 0),
                       childBuilder: (pressed, hovered, enabled) => ClipRRect(
                         clipBehavior: Clip.antiAlias,
@@ -126,10 +103,7 @@ class _TitleBarState extends State<TitleBar> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         TitleBarButton(
-                          onPressed: () {
-                            customWindow.minimize();
-                            widget.onMinimize?.call();
-                          },
+                          onPressed: () => customWindow.minimize(),
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
                             "assets/images/minimize_icon.png",
@@ -139,10 +113,7 @@ class _TitleBarState extends State<TitleBar> {
                           ),
                         ),
                         TitleBarButton(
-                          onPressed: () {
-                            customWindow.toggleMaximize();
-                            widget.onMaximize?.call();
-                          },
+                          onPressed: () => customWindow.toggleMaximize(),
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
                             "assets/images/${_isMaximized ? "unmaximize_icon" : "maximize_icon"}.png",
@@ -155,10 +126,7 @@ class _TitleBarState extends State<TitleBar> {
                           hoveredColor: Colors.red,
                           activeColor: Colors.red.shade900,
                           maxSize: const Size(double.infinity, 30),
-                          onPressed: () {
-                            customWindow.close();
-                            widget.onClose?.call();
-                          },
+                          onPressed: () => customWindow.close(),
                           childBuilder: (pressed, hovered, enabled) => Image.asset(
                             "assets/images/close_icon.png",
                             isAntiAlias: true,
