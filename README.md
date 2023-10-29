@@ -94,7 +94,7 @@ This template is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
-This package was made in the pursuite of having a simple way to implement custom windows, with all the features possible.
+This package was made in the pursuit of having a simple way to implement custom windows, with all the customizations possible.
 
 ---
 
