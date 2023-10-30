@@ -21,7 +21,7 @@ dev_dependencies:
 
 flutter:
   assets:
-    - assets/images/close_icon.png
-    - assets/images/maximize_icon.png
-    - assets/images/minimize_icon.png
-    - assets/images/unmaximize_icon.png
+    - packages/custom_window/assets/images/close_icon.png
+    - packages/custom_window/assets/images/maximize_icon.png
+    - packages/custom_window/assets/images/minimize_icon.png
+    - packages/custom_window/assets/images/unmaximize_icon.png

@@ -104,7 +104,7 @@ class _TitleBarState extends State<TitleBar> {
                           onPressed: () => customWindow.minimize(),
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
-                            "assets/images/minimize_icon.png",
+                            "packages/custom_window/assets/images/minimize_icon.png",
                             isAntiAlias: true,
                             filterQuality: FilterQuality.high,
                             color: Theme.of(context).colorScheme.onBackground,
@@ -114,7 +114,7 @@ class _TitleBarState extends State<TitleBar> {
                           onPressed: () => customWindow.toggleMaximize(),
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
-                            "assets/images/${_isMaximized ? "unmaximize_icon" : "maximize_icon"}.png",
+                            "packages/custom_window/assets/images/${_isMaximized ? "unmaximize_icon" : "maximize_icon"}.png",
                             isAntiAlias: true,
                             filterQuality: FilterQuality.high,
                             color: Theme.of(context).colorScheme.onBackground,
@@ -126,7 +126,7 @@ class _TitleBarState extends State<TitleBar> {
                           maxSize: const Size(double.infinity, 30),
                           onPressed: () => customWindow.close(),
                           childBuilder: (pressed, hovered, enabled) => Image.asset(
-                            "assets/images/close_icon.png",
+                            "packages/custom_window/assets/images/close_icon.png",
                             isAntiAlias: true,
                             filterQuality: FilterQuality.high,
                             color: Theme.of(context).colorScheme.onBackground,
