@@ -104,7 +104,8 @@ class _TitleBarState extends State<TitleBar> {
                           onPressed: () => customWindow.minimize(),
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
-                            "packages/custom_window/assets/images/minimize_icon.png",
+                            "assets/images/minimize_icon.png",
+                            package: "custom_window",
                             isAntiAlias: true,
                             filterQuality: FilterQuality.high,
                             color: Theme.of(context).colorScheme.onBackground,
@@ -114,7 +115,8 @@ class _TitleBarState extends State<TitleBar> {
                           onPressed: () => customWindow.toggleMaximize(),
                           maxSize: const Size(double.infinity, 30),
                           child: Image.asset(
-                            "packages/custom_window/assets/images/${_isMaximized ? "unmaximize_icon" : "maximize_icon"}.png",
+                            "assets/images/${_isMaximized ? "unmaximize_icon" : "maximize_icon"}.png",
+                            package: "custom_window",
                             isAntiAlias: true,
                             filterQuality: FilterQuality.high,
                             color: Theme.of(context).colorScheme.onBackground,
@@ -126,7 +128,8 @@ class _TitleBarState extends State<TitleBar> {
                           maxSize: const Size(double.infinity, 30),
                           onPressed: () => customWindow.close(),
                           childBuilder: (pressed, hovered, enabled) => Image.asset(
-                            "packages/custom_window/assets/images/close_icon.png",
+                            "assets/images/close_icon.png",
+                            package: "custom_window",
                             isAntiAlias: true,
                             filterQuality: FilterQuality.high,
                             color: Theme.of(context).colorScheme.onBackground,
