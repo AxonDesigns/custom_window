@@ -31,6 +31,7 @@ class CustomWindow {
     bool fullScreen = false,
     bool focusAtStartup = true,
     bool hideAtStartup = false,
+    bool frameless = false,
   }) async {
     await windowManager.ensureInitialized();
 
@@ -49,6 +50,7 @@ class CustomWindow {
     );
 
     await windowManager.waitUntilReadyToShow(windowOptions, () async {
+      frameless ? await windowManager.setAsFrameless() : null;
       hideAtStartup ? await windowManager.hide() : await windowManager.show();
       focusAtStartup ? await windowManager.focus() : await windowManager.blur();
     });
