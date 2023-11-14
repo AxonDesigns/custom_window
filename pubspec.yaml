@@ -1,5 +1,5 @@
 name: custom_window
-description: A new Flutter package project.
+description: Custom Window is a simple package for developing desktop applications using Flutter. This package empowers you to create applications with a custom-designed window, giving your desktop app a unique and professional look. Whether you're building a productivity tool, a creative application, or any other desktop software, this package provides the foundation you need.
 version: 0.0.1
 homepage:
 
