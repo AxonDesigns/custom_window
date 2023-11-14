@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class FIconButton extends StatefulWidget {
+class TitleBarBackButton extends StatefulWidget {
   final Widget? child;
   final VoidCallback? onPressed;
   final Size? minSize;
   final EdgeInsetsGeometry padding;
   final Widget Function(bool pressed, bool hovered, bool enabled)? childBuilder;
-  const FIconButton({
+  const TitleBarBackButton({
     super.key,
     this.child,
     this.childBuilder,
@@ -17,18 +17,18 @@ class FIconButton extends StatefulWidget {
           (child == null && childBuilder != null) || (childBuilder == null && child != null) || (childBuilder == null && child == null),
         );
 
-  factory FIconButton.builder({required Widget child, VoidCallback? onPressed}) {
-    return FIconButton(
+  factory TitleBarBackButton.builder({required Widget child, VoidCallback? onPressed}) {
+    return TitleBarBackButton(
       onPressed: onPressed,
       child: child,
     );
   }
 
   @override
-  State<FIconButton> createState() => _FIconButtonState();
+  State<TitleBarBackButton> createState() => _TitleBarBackButtonState();
 }
 
-class _FIconButtonState extends State<FIconButton> {
+class _TitleBarBackButtonState extends State<TitleBarBackButton> {
   bool pressed = false;
   bool hovered = false;
 

@@ -5,7 +5,7 @@ import 'package:window_manager/window_manager.dart';
 import 'dart:async';
 
 export 'src/window_scaffold.dart';
-export 'src/f_icon_button.dart';
+export 'src/title_bar_back_button.dart';
 export 'src/title_bar_button.dart';
 export 'src/window_page.dart';
 export 'src/title_bar.dart';
@@ -55,6 +55,8 @@ class CustomWindow {
       focusAtStartup ? await windowManager.focus() : await windowManager.blur();
     });
   }
+
+  WindowManager get manager => windowManager;
 
   /// Closes the window.
   Future<void> close() async => await windowManager.close();

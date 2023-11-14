@@ -74,7 +74,7 @@ class _TitleBarState extends State<TitleBar> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(width: 6),
-                    FIconButton(
+                    TitleBarBackButton(
                       onPressed: _canPop ? () => pop() : null,
                       minSize: const Size(40, 0),
                       childBuilder: (pressed, hovered, enabled) => ClipRRect(
