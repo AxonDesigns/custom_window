@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/WindowIcons.ttf
 ///
-/// 
+///
 ///
 import 'package:flutter/widgets.dart';
 
@@ -19,7 +19,7 @@ class WindowIcons {
   WindowIcons._();
 
   static const _kFontFam = 'WindowIcons';
-  static const String? _kFontPkg = null;
+  static const String? _kFontPkg = "custom_window";
 
   static const IconData close_icon = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData maximize_icon = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
