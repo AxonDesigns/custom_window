@@ -21,8 +21,8 @@ class WindowIcons {
   static const _kFontFam = 'WindowIcons';
   static const String? _kFontPkg = "custom_window";
 
+  static const IconData minimize_icon = IconData(0xe800, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData maximize_icon = IconData(0xe801, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData close_icon = IconData(0xe802, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData maximize_icon = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData unmaximize_icon = IconData(0xe804, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData minimize_icon = IconData(0xe805, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData unmaximize_icon = IconData(0xe803, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }
