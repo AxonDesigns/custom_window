@@ -25,3 +25,7 @@ flutter:
     - assets/images/maximize_icon.png
     - assets/images/minimize_icon.png
     - assets/images/unmaximize_icon.png
+  fonts:
+    - family: WindowIcons
+      fonts:
+        - asset: assets/fonts/WindowIcons.ttf

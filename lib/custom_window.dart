@@ -10,6 +10,7 @@ export 'src/title_bar_button.dart';
 export 'src/window_page.dart';
 export 'src/title_bar.dart';
 export 'src/window_callback_container.dart';
+export 'src/window_icons.dart';
 
 class CustomWindow {
   static final CustomWindow instance = CustomWindow._();
